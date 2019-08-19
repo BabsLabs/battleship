@@ -1,1 +1,1 @@
-This is the README for battleship. I changed the first line too!
+This is the README for battleship. Forking and cloning down. 
