@@ -16,11 +16,11 @@ class Ship
   # sunk? method
   def sunk?
     # sinks ship when health is zero
-    if @health == 0
+    if @health > 0
       # returns bool
-      true
-    else
       false
+    else
+      true
     end
   end
 
