@@ -30,4 +30,9 @@ class CellTest < Minitest::Test
     assert_instance_of Ship, @cruiser
   end
 
+  def test_place__ship
+    @cell.place_ship(@cruiser)
+    assert_equal @cruiser, @cell.ship
+  end
+
 end
