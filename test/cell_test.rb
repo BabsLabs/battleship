@@ -26,13 +26,10 @@ class CellTest < Minitest::Test
     assert_equal true, @cell.empty?
   end
 
-  def test_cruiser_class
-    assert_instance_of Ship, @cruiser
-  end
-
-  def test_place__ship
+  def test_place_ship
     @cell.place_ship(@cruiser)
     assert_equal @cruiser, @cell.ship
+    assert_equal false, @cell.empty?
   end
 
 end
