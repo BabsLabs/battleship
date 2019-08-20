@@ -16,4 +16,8 @@ class ShipTest < Minitest::Test
     assert_equal "Cruiser", @cruiser.name
   end
 
+  def test_length
+    assert_equal 3, @cruiser.length
+  end
+
 end
