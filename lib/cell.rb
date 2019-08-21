@@ -28,17 +28,22 @@ class Cell
     @fired_upon = true
   end
 
-  def render
-    if @fired_upon == false
-      "."
-    elsif @fired_upon == true && @ship == nil
-      "M"
-    elsif @fired_upon == true && @ship != nil # however this might override the X needed for a sunk ship
-      "H"
-    end
-  end
+  def render(show_ship = false)
+    if show_ship == false
 
-  def show?
+      if @fired_upon == false
+        "."
+      elsif @fired_upon == true && @ship == nil
+        "M"
+      elsif @ship.sunk? == true
+        "X"
+      elsif @fired_upon == true && @ship != nil
+        "H"
+      end
+
+    elsif show_ship == true && @ship != nil
+      "S"
+    end
   end
 
 end
