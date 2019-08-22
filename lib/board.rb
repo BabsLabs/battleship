@@ -20,8 +20,40 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4"),
     }
-
   end
 
+  def valid_coordinate?(coordinate)
+    # check if the coordinate is one of the cell keys
+    @cells.key?(coordinate)
+  end
+
+  def valid_placement?(ship_object, coordinate_array)
+    # check to see if coordinate_array is the length of the ship
+    if ship_object.length !=  coordinate_array.length
+      false
+    else
+
+    # check if the coordinate_array is consecutive
+    # letters_array = []
+    # numbers_array = []
+
+    # iterate through coordinate array and split the coordinate into to arrays. A letter array and a number array.
+    # coordinate_array.each do |coordinate|
+    #   letters_array << coordinate.split('').first
+    #   numbers_array << coordinate.split('').last
+    # end
+
+    # check that all the letters in the letters_array are the same
+    # if letters_array.all? {|letter| letter == letters_array[0]}
+    # end
+
+    # check all the numbers in the numbers_array are consecutive
+    # if numbers_array != numbers_array.each_cons(ship_object.length).any? { |x| x  == coordinate_array}
+    # end
+
+    # end of first if statement on length
+      true
+    end
+  end
 
 end
