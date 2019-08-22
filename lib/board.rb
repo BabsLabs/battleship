@@ -29,31 +29,38 @@ class Board
 
   def valid_placement?(ship_object, coordinate_array)
     # check to see if coordinate_array is the length of the ship
-    if ship_object.length !=  coordinate_array.length
-      false
-    else
+    # if ship_object.length !=  coordinate_array.length
+    #   false
 
     # check if the coordinate_array is consecutive
-    # letters_array = []
-    # numbers_array = []
+    letters_array = []
+    numbers_array = []
 
     # iterate through coordinate array and split the coordinate into to arrays. A letter array and a number array.
-    # coordinate_array.each do |coordinate|
-    #   letters_array << coordinate.split('').first
-    #   numbers_array << coordinate.split('').last
-    # end
+    coordinate_array.each do |coordinate|
+      letters_array << coordinate.split('').first
+      numbers_array << coordinate.split('').last
+    end
 
     # check that all the letters in the letters_array are the same
     # if letters_array.all? {|letter| letter == letters_array[0]}
     # end
 
-    # check all the numbers in the numbers_array are consecutive
-    # if numbers_array != numbers_array.each_cons(ship_object.length).any? { |x| x  == coordinate_array}
-    # end
+    # check all the numbers in the numbers_array are consecutive using ordinal values
+    ord_array = []
+    numbers_array.each do |number|
+      ord_array << number.ord
+    end
 
-    # end of first if statement on length
+    if ord_array.sum != (ord_array[0] * (ord_array.length) + ord_array.length)
+      false
+    else
       true
     end
+
+    # end of first if statement on length
+    #   true
+    # end
   end
 
 end
