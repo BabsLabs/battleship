@@ -25,73 +25,35 @@ class Board
 
   def valid_coordinate?(coordinate)
     @cells.include? coordinate
-    #make enumerable verify both key && value == coordinate
-    # found_coordinate = nil
-    # @cells.each do |key, value|
-    #   if value.coordinate == coordinate
-    #      found_coordinate = true
-    #     # binding.pry
-    #     break
-    #   elsif value.coordinate != coordinate
-    #        found_coordinate = false
-    #     break
-    #   end
-    # end
-    # found_coordinate
   end
 
-  # def valid_placement?(ship, coordinates)
-    # # if ship.length != coordinates.length
-    # #   false
-    # # end
-    # letters_array = []
-    # numbers_array = []
-    # coordinates.each do |coordinate|
-    #   # coordinate.split("").first && coordinate.split("").last
-    #   letters_array.push coordinate.split("").first
-    #   numbers_array.push coordinate.split("").last
-    #   if
-    #   letters_array.all? do |letter|
-    #     letter == letters_array[0]
-    #
-    #   end
-    #   numbers_array.each_cons(3) do |number|
-    #     number + 1 ==
-    #     binding.pry
-  #     end
-  #     end
-  #   end
-  #
-
-#==================================
-
-  # end
+  def valid_placement?(ship, coordinates)
+     if ship.length != coordinates.length
+       false
+     elsif consecutive
+     end
+    end
 
   def consecutive?(ship, array_coordinates)
 
-    if ship.length == array_coordinates.length
-      true
-    else
-      false
-    end
+    # if ship.length == array_coordinates.length
+    #   true
+    # else
+    #   false
+    # end
     row_values = []
     column_values = []
     array = array_coordinates.map do |coordinate|
       single_cord = coordinate.split("")
       row_values.push single_cord[0]
       column_values.push single_cord[1].to_i
-      # coordinate.ord + coordinate[1].to_i
+      coordinate.ord + coordinate[1].to_i #this is what is getting mapped
     end
-    row_values.uniq == 1
-    column_values.each_cons(2) do |x, y|
+    # row_values.uniq == 1
+    array.sort.each_cons(2).all? { |x, y| x == y - 1 }
+  end
 
-  # print x
-  # print y
-      binding.pry
+  def not_diagnol
 
-    end
-
-  #   array.sort.each_cons(2).all? { |x, y| x == y - 1 }
-  #   binding.pry
   end
 end
