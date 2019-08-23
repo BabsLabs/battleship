@@ -38,9 +38,6 @@ class CellTest < Minitest::Test
 
   end
 
-  def test_method_not_diagnol
-
-  end
 
   def test_valid_placement?
     #length
