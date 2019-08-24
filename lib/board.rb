@@ -29,15 +29,8 @@ class Board
   end
 
 
-  def valid_placement?(ship, coordinates)
-    if ship.length != coordinates.length
-      false
-    end
-  end
-
-
   def consecutive?(ship, array_coordinates)
-    row_values = [] # empty array for letter
+    row_values = [] # empty array for letters
     column_values = [] #  empty array for numbers
     array = array_coordinates.map do |coordinate| # iterate through array_coordinates
       single_cord = coordinate.split("") # splits every coordinate into arrays of two elements
@@ -51,6 +44,10 @@ class Board
   end
 
 
-
+  def valid_placement?(ship, coordinates)
+    if ship.length != coordinates.length
+      false
+    end
+  end
 
 end
