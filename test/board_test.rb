@@ -29,13 +29,13 @@ class CellTest < Minitest::Test
     assert_equal false, @board.valid_coordinate?("A22")
   end
 
-  def test_valid_placement?
+  # valid placement tests
+  def test_ship_length_equals_coordinate_length
     assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2"])
     assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
   end
 
-  def test_consecutive?
-    # test placement is consecutive
+  def test_coordinates_are_consecutive?
     assert_equal false, @board.consecutive?(@cruiser, ["A1", "A2", "A4"])
     assert_equal false, @board.consecutive?(@submarine, ["A1", "C1"])
     assert_equal true, @board.consecutive?(@cruiser, ["A3", "A2", "A1"])
@@ -43,7 +43,6 @@ class CellTest < Minitest::Test
   end
 
   def test_cant_be_diagnol
-    # test placement can't be diagnol
     assert_equal false, @board.consecutive?(@submarine, ["A1", "B2"])
     assert_equal false, @board.consecutive?(@cruiser, ["D1", "C2", "B3"])
     assert_equal true, @board.consecutive?(@cruiser, ["D1", "D2", "D3"])
