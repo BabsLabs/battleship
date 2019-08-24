@@ -29,10 +29,10 @@ class Board
   end
 
 
-  def consecutive?(ship, array_coordinates)
+  def consecutive?
     row_values = [] # empty array for letters
     column_values = [] #  empty array for numbers
-    array = array_coordinates.map do |coordinate| # iterate through array_coordinates
+    array = @array_coordinates.map do |coordinate| # iterate through array_coordinates
       single_cord = coordinate.split("") # splits every coordinate into arrays of two elements
       row_values.push single_cord[0] # add letters to row coordinate array
       column_values.push single_cord[1].to_i # add numbers to column array
@@ -45,8 +45,11 @@ class Board
 
 
   def valid_placement?(ship, coordinates)
+    @array_coordinates = coordinates
     if ship.length != coordinates.length
       false
+    elsif ship.length == coordinates.length
+      consecutive?
     end
   end
 
