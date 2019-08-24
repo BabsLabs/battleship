@@ -2,7 +2,6 @@ require 'pry'
 class Board
   attr_reader :cells
   def initialize
-    # @cell_bank = Hash.new
     @cells = {
                    "A1" => Cell.new("A1"),
                    "A2" => Cell.new("A2"),
@@ -38,7 +37,6 @@ class Board
       column_values.push single_cord[1].to_i # add numbers to column array
       coordinate.ord + coordinate[1].to_i # this is what gets mapped to the array - the ordinal values
     end
-    # row_values.uniq == 1 # check to make sure all letters are the same (maybe useless?)
     array.sort.each_cons(2).all? { |x, y| x == y - 1 } # makes array pairs from our array and checks that they are consecutive
     # using the ord values and checking for x == y - 1 prevents diagnol placement
   end
