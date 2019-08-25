@@ -40,6 +40,23 @@ class Board
     # using the ord values and checking for x == y - 1 prevents diagnol placement (see ordinal value diagram)
   end
 
+  def overlapping?(ship, coordinates)
+    # iterate throught coordinates parameter in valid_placement?
+    coordinates.each do |coordinate|
+      # iterate throught the boards cell values
+      @cells.values.each do |cell|
+        # check to see if the cells.values cell.ships are equal to nil
+        if cell.ship != nil
+          # if so then overlapping is true
+          return true
+        else
+          # or if not return a false
+          return false
+        end
+      end
+    end
+  end
+
 
   def valid_placement?(ship, coordinates)
     @array_coordinates = coordinates
@@ -47,13 +64,20 @@ class Board
       false
     elsif ship.length == coordinates.length
       consecutive?
+    elsif ship.length == coordinates.length
+      # if overlapping? is true then dont place and if false then we can place ship
+      if overlapping == true
+        false
+      else
+        true
+      end
     end
   end
 
   def place(ship_to_be_placed, placement_coordinates)
     # iterate throught the placement_coordinates
     placement_coordinates.each do |placement_coordinate|
-      # iterate throught the cell values
+      # iterate throught the boards cell values
       @cells.values.each do |cell|
         # for all the cells.values cell.coordinates that are equal to a placement_coordinate
         if placement_coordinate == cell.coordinate
