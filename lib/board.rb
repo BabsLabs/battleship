@@ -1,4 +1,3 @@
-require 'pry'
 class Board
   attr_reader :cells
   def initialize
@@ -38,7 +37,7 @@ class Board
       coordinate.ord + coordinate[1].to_i # this is what gets mapped to the array - the ordinal values
     end
     array.sort.each_cons(2).all? { |x, y| x == y - 1 } # makes array pairs from our array and checks that they are consecutive
-    # using the ord values and checking for x == y - 1 prevents diagnol placement
+    # using the ord values and checking for x == y - 1 prevents diagnol placement (see ordinal value diagram)
   end
 
 
@@ -50,5 +49,20 @@ class Board
       consecutive?
     end
   end
+
+  def place(ship_to_be_placed, placement_coordinates)
+    # iterate throught the placement_coordinates
+    placement_coordinates.each do |placement_coordinate|
+      # iterate throught the cell values
+      @cells.values.each do |cell|
+        # for all the cells.values cell.coordinates that are equal to a placement_coordinate
+        if placement_coordinate == cell.coordinate
+          # update that values cell.ship so it is now equal to the ship_to_be_placed
+          cell.ship = ship_to_be_placed
+        end
+      end
+    end
+  end
+
 
 end
