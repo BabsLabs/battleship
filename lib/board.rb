@@ -21,7 +21,6 @@ class Board
                   }
   end
 
-
   def valid_coordinate?(coordinate)
     @cells.include? coordinate
   end
@@ -57,7 +56,6 @@ class Board
     end
   end
 
-
   def valid_placement?(ship, coordinates)
     @array_coordinates = coordinates
     if ship.length != coordinates.length
@@ -88,5 +86,13 @@ class Board
     end
   end
 
+  def render(default = false)
+    puts "\n
+            1 2 3 4
+          A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}
+          B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render}
+          C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render}
+          D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render}"
+  end
 
 end

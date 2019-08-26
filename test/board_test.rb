@@ -71,4 +71,8 @@ class CellTest < Minitest::Test
     assert_equal true, @board.valid_placement?(@submarine, ["A1", "B1"])
   end
 
+  def test_board_render
+    @board.render
+  end
+
 end
