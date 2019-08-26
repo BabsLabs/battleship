@@ -26,7 +26,6 @@ class Board
     @cells.include? coordinate
   end
 
-
   def consecutive?
     row_values = [] # empty array for letters
     column_values = [] #  empty array for numbers
@@ -57,7 +56,6 @@ class Board
     end
   end
 
-
   def valid_placement?(ship, coordinates)
     @array_coordinates = coordinates
     if ship.length != coordinates.length
@@ -87,6 +85,4 @@ class Board
       end
     end
   end
-
-
 end
