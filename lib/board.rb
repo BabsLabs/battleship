@@ -1,8 +1,6 @@
-require 'pry'
 class Board
   attr_reader :cells
   def initialize
-    # @cell_bank = Hash.new
     @cells = {
                    "A1" => Cell.new("A1"),
                    "A2" => Cell.new("A2"),
@@ -23,37 +21,68 @@ class Board
                   }
   end
 
+
   def valid_coordinate?(coordinate)
     @cells.include? coordinate
   end
 
-  def valid_placement?(ship, coordinates)
-     if ship.length != coordinates.length
-       false
-     elsif consecutive
-     end
+  def consecutive?
+    row_values = [] # empty array for letters
+    column_values = [] #  empty array for numbers
+    array = @array_coordinates.map do |coordinate| # iterate through array_coordinates
+      single_cord = coordinate.split("") # splits every coordinate into arrays of two elements
+      row_values.push single_cord[0] # add letters to row coordinate array
+      column_values.push single_cord[1].to_i # add numbers to column array
+      coordinate.ord + coordinate[1].to_i # this is what gets mapped to the array - the ordinal values
     end
-
-  def consecutive?(ship, array_coordinates)
-
-    # if ship.length == array_coordinates.length
-    #   true
-    # else
-    #   false
-    # end
-    row_values = []
-    column_values = []
-    array = array_coordinates.map do |coordinate|
-      single_cord = coordinate.split("")
-      row_values.push single_cord[0]
-      column_values.push single_cord[1].to_i
-      coordinate.ord + coordinate[1].to_i #this is what is getting mapped
-    end
-    # row_values.uniq == 1
-    array.sort.each_cons(2).all? { |x, y| x == y - 1 }
+    array.sort.each_cons(2).all? { |x, y| x == y - 1 } # makes array pairs from our array and checks that they are consecutive
+    # using the ord values and checking for x == y - 1 prevents diagnol placement (see ordinal value diagram)
   end
 
-  def not_diagnol
+  def overlapping?(ship, coordinates)
+    # iterate throught coordinates parameter in valid_placement?
+    coordinates.each do |coordinate|
+      # iterate throught the boards cell values
+      @cells.values.each do |cell|
+        # check to see if the cells.values cell.ships are equal to nil
+        if cell.ship != nil
+          # if so then overlapping is true
+          return true
+        else
+          # or if not return a false
+          return false
+        end
+      end
+    end
+  end
 
+  def valid_placement?(ship, coordinates)
+    @array_coordinates = coordinates
+    if ship.length != coordinates.length
+      false
+    elsif ship.length == coordinates.length
+      consecutive?
+    elsif ship.length == coordinates.length
+      # if overlapping? is true then dont place and if false then we can place ship
+      if overlapping == true
+        false
+      else
+        true
+      end
+    end
+  end
+
+  def place(ship_to_be_placed, placement_coordinates)
+    # iterate throught the placement_coordinates
+    placement_coordinates.each do |placement_coordinate|
+      # iterate throught the boards cell values
+      @cells.values.each do |cell|
+        # for all the cells.values cell.coordinates that are equal to a placement_coordinate
+        if placement_coordinate == cell.coordinate
+          # update that values cell.ship so it is now equal to the ship_to_be_placed
+          cell.ship = ship_to_be_placed
+        end
+      end
+    end
   end
 end
