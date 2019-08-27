@@ -25,7 +25,6 @@ class Board
     @cells.include? coordinate
   end
 
-
   def consecutive?
     row_values = [] # empty array for letters
     column_values = [] #  empty array for numbers
