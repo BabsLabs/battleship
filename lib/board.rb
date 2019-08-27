@@ -21,6 +21,7 @@ class Board
                   }
   end
 
+  # make sure our cells hash has the coordinate in it
   def valid_coordinate?(coordinate)
     @cells.include? coordinate
   end
@@ -86,6 +87,7 @@ class Board
   end
 
   def render(default = false)
+    # render can be refctored later to be dynamic
     puts "\n
             1 2 3 4
           A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}
