@@ -42,8 +42,20 @@ class Cell
         "H"
       end
 
-    elsif show_ship == true && @ship != nil
+    elsif show_ship == true
+
+      if @ship != nil
       "S"
+      elsif @fired_upon == false
+        "."
+      elsif @fired_upon == true && @ship == nil
+        "M"
+      elsif @ship.sunk? == true
+        "X"
+      elsif @fired_upon == true && @ship != nil
+        "H"
+      end
+
     end
   end
 

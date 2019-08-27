@@ -73,6 +73,10 @@ class CellTest < Minitest::Test
 
   def test_board_render
     @board.render
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.render(true)
+    @board.place(@submarine, ["C3", "D3"])
+    @board.render(true)
   end
 
 end
