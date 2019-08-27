@@ -13,6 +13,7 @@ class CellTest < Minitest::Test
     @cell_1 = @board.cells["A1"]
     @cell_2 = @board.cells["A2"]
     @cell_3 = @board.cells["A3"]
+    @cell_4 = @board.cells["B2"]
   end
 
   def test_existence
@@ -69,6 +70,22 @@ class CellTest < Minitest::Test
   def test_ships_cant_overlap
     @board.place(@cruiser, ["A1", "A2", "A3"])
     assert_equal true, @board.valid_placement?(@submarine, ["A1", "B1"])
+  end
+
+  def test_board_render
+    @board.render
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.render(true)
+    @board.place(@submarine, ["C3", "D3"])
+    @board.render(true)
+    @cell_4.fire_upon
+    @board.render
+    @cell_1.fire_upon
+    @board.render
+    @board.render(true)
+    @cell_2.fire_upon
+    @cell_3.fire_upon
+    @board.render
   end
 
 end
