@@ -1,17 +1,30 @@
-class Cpu
-  attr_reader :cpu_board
-  def initialize(cpu_board)
-    @cpu_board = Board.new
-    @ships = [Ship.new("cruiser", 3), Ship.new("submarine", 2)]
-    @cpu_cruiser = Ship.new("Cruiser", 3)
-    @cpu_submarine = Ship.new("Submarine", 2)
-    binding.pry
+require "./lib/player"
+class Cpu < Player
+
+
+  def cpu_place_ships
+    # makes a copy of the boards cells
+    cpu_cells = @board.cells.keys.shuffle
+    # iterate through the ships
+    @ships.each do |ship_to_place|
+      # make a loop that will keep validating some coordinates
+
+      # now our cells copy is one element smaller
+      # coord = cpu_cells.shift
+      coord = ["A1", "A2"]
+      # @board.cells[coord].ship = ship_to_place
+      @board.cells["A1"].ship = ship_to_place
+      @board.valid_placement?(ship_to_place, coord)
+      # randomly pick horizontal/vertical
+
+
+      # calculate the rest of the coords
+
+      # place the ships
+      # random_coordinates.valid_placement? == true
+        # place ship_to_place on random_coordinates
+
+    end
   end
 
-  def place_ships
-    @ship.each do |ship|
-
-
-  end
 end
-end 

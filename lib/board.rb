@@ -26,18 +26,36 @@ class Board
     @cells.include? coordinate
   end
 
-  def consecutive?
-    row_values = [] # empty array for letters
-    column_values = [] #  empty array for numbers
-    array = @array_coordinates.map do |coordinate| # iterate through array_coordinates
-      single_cord = coordinate.split("") # splits every coordinate into arrays of two elements
-      row_values.push single_cord[0] # add letters to row coordinate array
-      column_values.push single_cord[1].to_i # add numbers to column array
-      coordinate.ord + coordinate[1].to_i # this is what gets mapped to the array - the ordinal values
-    end
-    array.sort.each_cons(2).all? { |x, y| x == y - 1 } # makes array pairs from our array and checks that they are consecutive
-    # using the ord values and checking for x == y - 1 prevents diagnol placement (see ordinal value diagram)
-  end
+  # def consecutive?
+  #   row_values = [] # empty array for letters
+  #   column_values = [] #  empty array for numbers
+  #   array = @array_coordinates.map do |coordinate| # iterate through array_coordinates
+  #     single_cord = coordinate.split("") # splits every coordinate into arrays of two elements
+  #     row_values.push single_cord[0] # add letters to row coordinate array
+  #     column_values.push single_cord[1].to_i # add numbers to column array
+  #     coordinate.ord + coordinate[1].to_i # this is what gets mapped to the array - the ordinal values
+  #   end
+  #   array.sort.each_cons(2).all? { |x, y| x == y - 1 } # makes array pairs from our array and checks that they are consecutive
+  #   # using the ord values and checking for x == y - 1 prevents diagnol placement (see ordinal value diagram)
+  # end
+
+# def consecutive?
+#   @array_coordinates
+#   sub_cells = @cells.each_slice(4).to_a
+#   binding.pry
+#   if @array_coordinates[0]
+# end
+
+def consecutive?
+#make two empty arrays
+#split the coordinates into letters and number
+#the letters have to be ords
+#check if letters are same
+#check if numbers are same
+# check if letters are consecutive
+# check if numbers are consecutive
+#if numbers are consecutive and letters are the same || letters are consecutive and numbers are the same
+end
 
   def overlapping?(ship, coordinates)
     # iterate throught coordinates parameter in valid_placement?

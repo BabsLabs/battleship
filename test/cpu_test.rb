@@ -16,10 +16,13 @@ class CpuTest < Minitest::Test
 
   def test_existence
     assert_instance_of Cpu, @cpu
+    assert_instance_of Board, @cpu_board
   end
 
   def test_cpu_interactions
+    # @cpu_board.render
     # assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", @cpu_board.render
-    @cpu.place_ships
+    @cpu.cpu_place_ships
+    assert_equal true, @cpu.cpu_place_ships
   end
 end
