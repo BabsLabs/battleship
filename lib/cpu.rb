@@ -9,15 +9,15 @@ class Cpu
 
   def cpu_place_ships
     # makes a copy of the boards cells
-    cpu_cells = @cpu_board.cells.keys.shuffle
+    # cpu_cells = @cpu_board.cells.keys.shuffle
     # iterate through the ships
-    @ships.each do |ship_to_place|
+    # @ships.each do |ship_to_place|
    # make a loop that will keep validating some coordinates
 
    # now our cells copy is one element smaller
-   coord = cpu_cells.shift
+   # coord = cpu_cells.shift
 
-  @cpu_board.cells[coord].ship = ship_to_place
+  # @cpu_board.cells[coord].ship = ship_to_place
   # randomly pick horizontal/vertical
     # we have our single coord and an an array of all the possible coords so what if we take our coord and then randomly add an index position of +1 || -1 || +4 || -4
 
@@ -25,7 +25,16 @@ class Cpu
 
   # calculate the rest of the coords
 
+  @ships.each do |ship_to_place|
+    random_cells = []
+    cpu_cells = @cpu_board.cells.keys
+
+    until @cpu_board.valid_placement?(ship_to_place, random_cells) == true
+      random_cells = cpu_cells.sample(ship_to_place.length)
     end
+    @cpu_board.place(ship_to_place, random_cells)
   end
+  end
+
 
 end
