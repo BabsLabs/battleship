@@ -5,6 +5,7 @@ require './lib/ship'
 class Game
   def start_game
     puts "**** Welcome to BATTLESHIP! ****"
+    puts "Enter p to play. Enter q to quit."
       user_input = ""
       until user_input == "p" || user_input == "q"
         user_input = gets.chomp.downcase
@@ -15,5 +16,6 @@ class Game
         else
           puts "Invalid response. Enter valid response"
         end
-    end
+      end
   end
+end
