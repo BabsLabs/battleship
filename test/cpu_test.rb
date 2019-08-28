@@ -20,6 +20,6 @@ class CpuTest < Minitest::Test
 
   def test_cpu_interactions
     # assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", @cpu_board.render
-    @cpu.place_ships
+    @cpu.cpu_place_ships
   end
 end

@@ -27,16 +27,39 @@ class Board
   end
 
   def consecutive?
-    row_values = [] # empty array for letters
-    column_values = [] #  empty array for numbers
-    array = @array_coordinates.map do |coordinate| # iterate through array_coordinates
-      single_cord = coordinate.split("") # splits every coordinate into arrays of two elements
-      row_values.push single_cord[0] # add letters to row coordinate array
-      column_values.push single_cord[1].to_i # add numbers to column array
-      coordinate.ord + coordinate[1].to_i # this is what gets mapped to the array - the ordinal values
+  #make two empty arrays
+  @letters_array = []
+  @numbers_array = []
+  #split the coordinates into letters and number
+    @array_coordinates.each do |array_coordinate|
+      @letters_array << array_coordinate[0]
+      @numbers_array << array_coordinate[1].to_i
     end
-    array.sort.each_cons(2).all? { |x, y| x == y - 1 } # makes array pairs from our array and checks that they are consecutive
-    # using the ord values and checking for x == y - 1 prevents diagnol placement (see ordinal value diagram)
+
+    #the letters have to be ords
+    @letters_array.map! {|letter| letter.ord}
+    #check if letters are same
+    def same_letters?
+      @letters_array.uniq.length == 1
+    end
+    #check if numbers are same
+    def same_numbers?
+      @numbers_array.uniq.length == 1
+    end
+    # check if letters are consecutive using each_cons not sorted with a check that
+    def consecutive_letters?
+      @letters_array.each_cons(2).all? { |x, y| x == y - 1 }
+    end
+    # check if numbers are consecutive
+    def consecutive_numbers?
+      @numbers_array.each_cons(2).all? { |x, y| x == y - 1 }
+    end
+    #if the letters are the same and the numbers are consecutive or letters are consecutive and numbers are the same
+    if (same_letters? && consecutive_numbers?) || (consecutive_letters? && same_numbers?)
+      true
+    else
+      false
+    end
   end
 
   def overlapping?(ship, coordinates)
