@@ -8,6 +8,7 @@ class Cell
     @fired_upon = false
   end
 
+  # check the cell is empty
   def empty?
     if @ship == nil
       true
@@ -29,6 +30,7 @@ class Cell
     @fired_upon = true
   end
 
+  # the order of this will change the way the board renders
   def render(show_ship = false)
     if show_ship == false
 
