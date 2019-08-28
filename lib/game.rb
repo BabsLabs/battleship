@@ -1,6 +1,7 @@
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
+require './lib/cpu'
 
 class Game
   def start_game
@@ -18,4 +19,5 @@ class Game
         end
       end
   end
+
 end
