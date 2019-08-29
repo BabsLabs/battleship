@@ -139,6 +139,7 @@ class Game
     end
   end
 
+  # print shot results
   def print_results
     puts "\nYour shot on #{@human_shot_coordinate} was a _."
     puts "My shot on #{@random_cpu_fire_cell.coordinate} was a _."
