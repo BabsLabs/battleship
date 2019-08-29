@@ -9,7 +9,7 @@ class Game
     @human_board = Board.new
     @cpu_ships = @ships = [Ship.new("cruiser", 3), Ship.new("submarine", 2)]
     @human_ships = @ships = [Ship.new("cruiser", 3), Ship.new("submarine", 2)]
-    @@human_shot_coordinate = ''
+    @human_shot_coordinate = ''
     @random_cpu_fire_cell = nil
   end
 
@@ -89,19 +89,17 @@ class Game
   end
 
   # render both cpu and player boards
-  def render_the_boards
+  def start_the_turns_phase
     puts "\n=============COMPUTER BOARD============="
     @cpu_board.render
     puts "\n=============PLAYER BOARD============="
     @human_board.render(true)
-  end
 
   # the player takes a shot then the cpu takes a shot
   # def turn_shots
 
-  def user_shot
     # prompt user for shot
-    puts "Enter the coordinate for your shot:"
+    puts "\nEnter the coordinate for your shot:"
     @human_shot_coordinate = gets.chomp.to_s.upcase
     # check for valid coordinate
     if @cpu_board.cells.keys.include?(@human_shot_coordinate)
@@ -116,10 +114,8 @@ class Game
       break if @cpu_board.cells.keys.include?(@human_shot_coordinate)
       end
     end
-  end
 
   # cpu shots
-  def cpu_shot
     # choose a random cell object from the human board
     @random_cpu_fire_cell = @human_board.cells.values.sample
     # check to see if it has been fired upon
@@ -137,24 +133,11 @@ class Game
       break if @random_cpu_fire_cell.fired_upon? != true
       end
     end
-  end
-
-  # def shot_check
-  #   if @cpu_board.cells[@random_cpu_fire_cell.coordinate].render == 'M'
-  #     "miss!"
-  #   elsif @cpu_board.cells[@random_cpu_fire_cell.coordinate].render == 'H'
-  #     "hit!"
-  #   elsif @cpu_board.cells[@random_cpu_fire_cell.coordinate].render == 'X'
-  #     "hit and you sunk my battleship!"
-  #   end
-  # end
 
   # print shot results
-  def print_results
     puts "\nYour shot on #{@human_shot_coordinate} was a _____" #{shot_check}"
     puts "My shot on #{@random_cpu_fire_cell.coordinate} was a ______" #{shot_check}"
   end
-
 
 
 end

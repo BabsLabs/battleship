@@ -9,7 +9,8 @@ class GameTest < Minitest::Test
 
   def setup
     @game = Game.new
-    @board = Board.new
+    @cpu_board = Board.new
+    @human_board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
   end
@@ -26,10 +27,7 @@ class GameTest < Minitest::Test
     @game.start_game
     @game.cpu_place_ships
     @game.human_place_ships
-    @game.render_the_boards
-    @game.user_shot
-    @game.cpu_shot
-    @game.print_results
+    @game.start_the_turns_phase
   end
 
 
