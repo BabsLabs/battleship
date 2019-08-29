@@ -23,7 +23,6 @@ class GameTest < Minitest::Test
   # end
 
   def test_game_can_be_played
-    @game.start_game
     @game.play_the_game
   end
 

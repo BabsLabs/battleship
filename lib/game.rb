@@ -5,6 +5,11 @@ require './lib/cpu'
 
 class Game
 
+  def initialize
+    @cpu_board = Board.new
+    @human_board = Board.new
+  end
+
   def start_game
     puts "**** Welcome to BATTLESHIP! ****"
     puts "Enter p to play. Enter q to quit."
@@ -22,8 +27,10 @@ class Game
   end
 
   def play_the_game
-    puts "=============COMPUTER BOARD============="
+    puts "\n=============COMPUTER BOARD============="
     @cpu_board.render
+    puts "\n=============PLAYER BOARD============="
+    @human_board.render
   end
 
 end
