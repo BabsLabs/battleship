@@ -89,8 +89,6 @@ class Game
   end
 
 
-#turns loop
-
   # render both cpu and player boards
   def start_the_turns_phase
     puts "\n=============COMPUTER BOARD============="
@@ -99,7 +97,6 @@ class Game
     @human_board.render(true)
 
   # the player takes a shot then the cpu takes a shot
-  # def turn_shots
 
     # prompt user for shot
     puts "\nEnter the coordinate for your shot:"
