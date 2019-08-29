@@ -15,42 +15,29 @@ class Human
     # render starting board
     @human_board.render
 
-    # tell them to place cruiser
-    # puts "\nEnter the coordinates for the Cruiser (3 spaces):"
-
     # iterate through the ships to place
     @ships.each do |ship_to_place|
-    puts "\nEnter the coordinates for the #{ship_to_place.name} (#{ship_to_place.length} spaces):"
+    # prompt user to place ships
+    puts "\nEnter a coordinate for the #{ship_to_place.name} (#{ship_to_place.length} spaces):"
 
+
+    while true
     # get the human input!
     human_input = []
-    until human_input.length == ship_to_place.length && @human_board.valid_placement?(ship_to_place, human_input)
-      human_input << gets.chomp.downcase.to_s
+
+    ship_to_place.length.times do
+      human_input << gets.chomp.upcase.to_s
     end
 
-
-
-    # human_input = []
-    # until human_input.length == ship_to_place.length
-    #   human_input << gets.chomp.downcase.to_s
-    # end
-    # until @human_board.valid_placement?(ship_to_place, human_input)
-    #   human_input << gets.chomp.downcase.to_s
-    #   # @human_board.place(ship_to_place, human_input)
-    # end
-    #
-    #
-    # # until @human_board.valid_placement?(ship_to_place, human_input) == true
-    # #   # until human_input.length == ship_to_place.length
-    # #   human_input << gets.chomp.downcase.to_s
-    # #   # if human_input.length != ship_to_place.length
-    # #   #   puts "Coordinates not valid. Enter valid coordinates."
-    # #   # elsif human_input.length == ship_to_place.length
-    # #   # end
-    # #   # end
-    # # end
-    # #   @human_board.place(ship_to_place, human_input)
+    # check valid placement
+    if @human_board.valid_placement?(ship_to_place, human_input)
+      @human_board.place(ship_to_place, human_input)
+      break if @human_board.valid_placement?(ship_to_place, human_input)
+    else
+      puts "Invalid Input! Try again!"
     end
+    end
+  end
   end
 
 
