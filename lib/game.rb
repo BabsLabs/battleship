@@ -97,8 +97,9 @@ class Game
   end
 
   # the player takes a shot then the cpu takes a shot
-  def turn_shots
+  # def turn_shots
 
+  def user_shot
     # prompt user for shot
     puts "Enter the coordinate for your shot:"
     @human_shot_coordinate = gets.chomp.to_s.upcase
@@ -115,8 +116,10 @@ class Game
       break if @cpu_board.cells.keys.include?(@human_shot_coordinate)
       end
     end
+  end
 
-    # cpu shots
+  # cpu shots
+  def cpu_shot
     # choose a random cell object from the human board
     @random_cpu_fire_cell = @human_board.cells.values.sample
     # check to see if it has been fired upon
@@ -137,7 +140,7 @@ class Game
   end
 
   def print_results
-    puts "Your shot on #{@human_shot_coordinate} was a _."
+    puts "\nYour shot on #{@human_shot_coordinate} was a _."
     puts "My shot on #{@random_cpu_fire_cell.coordinate} was a _."
   end
 

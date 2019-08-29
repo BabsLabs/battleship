@@ -27,7 +27,8 @@ class GameTest < Minitest::Test
     # @game.cpu_place_ships
     # @game.human_place_ships
     # @game.render_the_boards
-    @game.turn_shots
+    @game.user_shot
+    @game.cpu_shot
     @game.print_results
   end
 
