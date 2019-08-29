@@ -18,12 +18,14 @@ class GameTest < Minitest::Test
     assert_instance_of Game, @game
   end
 
-  def test_welcome_prints
-    assert_equal "Welcome to BATTLESHIP!", @game.welcome
+  # def test_game_can_be_started
+  #   @game.start_game
+  # end
+
+  def test_game_can_be_played
+    @game.start_game
+    @game.play_the_game
   end
 
-  def test_play_prompt
-    assert_equal "Enter p to play. Enter q to quit.", @game.play_prompt
-  end
 
 end

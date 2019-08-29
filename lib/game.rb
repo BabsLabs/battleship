@@ -4,6 +4,7 @@ require './lib/ship'
 require './lib/cpu'
 
 class Game
+
   def start_game
     puts "**** Welcome to BATTLESHIP! ****"
     puts "Enter p to play. Enter q to quit."
@@ -18,6 +19,11 @@ class Game
           puts "Invalid response. Enter valid response"
         end
       end
+  end
+
+  def play_the_game
+    puts "=============COMPUTER BOARD============="
+    @cpu_board.render
   end
 
 end

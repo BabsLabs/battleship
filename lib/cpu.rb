@@ -6,7 +6,6 @@ class Cpu
     @ships = [Ship.new("cruiser", 3), Ship.new("submarine", 2)]
   end
 
-
   def cpu_place_ships
     @ships.each do |ship_to_place|
       random_cells = []
