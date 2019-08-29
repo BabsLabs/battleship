@@ -139,10 +139,22 @@ class Game
     end
   end
 
+  # def shot_check
+  #   if @cpu_board.cells[@random_cpu_fire_cell.coordinate].render == 'M'
+  #     "miss!"
+  #   elsif @cpu_board.cells[@random_cpu_fire_cell.coordinate].render == 'H'
+  #     "hit!"
+  #   elsif @cpu_board.cells[@random_cpu_fire_cell.coordinate].render == 'X'
+  #     "hit and you sunk my battleship!"
+  #   end
+  # end
+
   # print shot results
   def print_results
-    puts "\nYour shot on #{@human_shot_coordinate} was a _."
-    puts "My shot on #{@random_cpu_fire_cell.coordinate} was a _."
+    puts "\nYour shot on #{@human_shot_coordinate} was a _____" #{shot_check}"
+    puts "My shot on #{@random_cpu_fire_cell.coordinate} was a ______" #{shot_check}"
   end
+
+
 
 end
