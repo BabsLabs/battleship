@@ -7,11 +7,9 @@ require './lib/game/'
 
 loop do
   game = Game.new
-  cpu = Cpu.new
-  human = Human.new
   game.start_game
-  cpu.cpu_place_ships
-  human.human_place_ships
-  # game.play_the_game
+  game.cpu_place_ships
+  game.human_place_ships
+  game.render_the_boards
   # game.end_the_game
 end
