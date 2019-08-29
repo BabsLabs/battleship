@@ -88,6 +88,9 @@ class Game
   end
   end
 
+
+#turns loop
+
   # render both cpu and player boards
   def start_the_turns_phase
     puts "\n=============COMPUTER BOARD============="
