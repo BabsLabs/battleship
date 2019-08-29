@@ -13,7 +13,6 @@ class Ship
     @health = length
   end
 
-  # sunk? method
   def sunk?
     # ship is sunk when health is zero
     if @health > 0
@@ -24,7 +23,7 @@ class Ship
     end
   end
 
-  # hit method for -1 health
+  # takes away 1 health from the ship
   def hit
     @health -= 1
   end

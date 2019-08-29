@@ -79,10 +79,13 @@ class Board
     end
   end
 
+  # check that the ships will be placed correctly
   def valid_placement?(ship, coordinates)
     @array_coordinates = coordinates
+    # make sure the ship length and number of coordinates to place the ship on are the same length
     if ship.length != coordinates.length
       false
+    # check that the coordinates to place the ships on are all consecutive
     elsif ship.length == coordinates.length
       consecutive?
     elsif ship.length == coordinates.length
@@ -95,12 +98,13 @@ class Board
     end
   end
 
+  # place the ships on the cell
   def place(ship_to_be_placed, placement_coordinates)
     # iterate throught the placement_coordinates
     placement_coordinates.each do |placement_coordinate|
       # iterate throught the boards cell values
       @cells.values.each do |cell|
-        # for all the cells.values cell.coordinates that are equal to a placement_coordinate
+        # check that all the cells.values cell.coordinates are equal to a placement_coordinate
         if placement_coordinate == cell.coordinate
           # update that values cell.ship so it is now equal to the ship_to_be_placed
           cell.ship = ship_to_be_placed
@@ -109,7 +113,7 @@ class Board
     end
   end
 
-  # render can be refactored later to be dynamic
+  # render the board with the optional parameter to show ships
   def render(show_ship = false)
     if show_ship == false
       puts "\n  1 2 3 4\nA #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}\nB #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render}\nC #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render}\nD #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render}\n"
