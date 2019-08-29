@@ -21,6 +21,7 @@ class Game
           puts "BATTLESHIP started"
         elsif user_input == "q"
           puts "BATTLESHIP aborted"
+          exit
         else
           puts "Invalid response. Enter valid response"
         end
@@ -43,7 +44,7 @@ class Game
     # prompt
     puts "I have laid out my ships on the grid."
     puts "You now need to lay out your two ships."
-    puts "The Cruiser is two units long and the Submarine is three units long."
+    puts "The Cruiser is three units long and the Submarine is two units long."
 
     # render starting board
     @human_board.render
@@ -51,7 +52,7 @@ class Game
     # iterate through the ships to place
     @human_ships.each do |ship_to_place|
     # prompt user to place ships
-    puts "\nEnter a coordinate for the #{ship_to_place.name} (#{ship_to_place.length} spaces):"
+    puts "\nEnter a coordinate for the #{ship_to_place.name} (One at a time #{ship_to_place.length} times):"
 
 
     while true
@@ -84,14 +85,21 @@ class Game
     @human_board.render(true)
   end
 
-  def player_shot
-    shot_coordinate = ''
-    p "Enter the coordinate for your shot:"
+  def turn_shots
+    # prompt and get shot
+    puts "Enter the coordinate for your shot:"
     shot_coordinate = gets.chomp.to_s.upcase
-    binding.pry
-    if @cpu_board.cells.keys.inlude?(shot_coordinate)
+    # check for valid coordinate
+    if @cpu_board.cells.keys.include?(shot_coordinate)
       # fire on that cell
-      # else reprompt
+      @cpu_board.cells[shot_coordinate].fire_upon
+    # else reprompt
+    else
+      while true
+      puts "Invalid Coordinate. Choices are A1 - D4"
+      shot_coordinate = gets.chomp.to_s.upcase
+      break if @cpu_board.cells.keys.include?(shot_coordinate)
+      end
     end
   end
 

@@ -23,11 +23,11 @@ class GameTest < Minitest::Test
   # end
 
   def test_boards_can_rendered_when_playing
-    # @game.start_game
-    # @game.cpu_place_ships
-    # @game.human_place_ships
-    # @game.render_the_boards
-    @game.player_shot
+    @game.start_game
+    @game.cpu_place_ships
+    @game.human_place_ships
+    @game.render_the_boards
+    @game.turn_shots
   end
 
 
