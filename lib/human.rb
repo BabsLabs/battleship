@@ -31,7 +31,10 @@ class Human
 
     # check valid placement
     if @human_board.valid_placement?(ship_to_place, human_input)
+      # place ships
       @human_board.place(ship_to_place, human_input)
+      # render the board
+      @human_board.render(true)
       break if @human_board.valid_placement?(ship_to_place, human_input)
     else
       puts "Invalid Input! Try again!"
