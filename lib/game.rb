@@ -2,8 +2,10 @@ require './lib/board'
 require './lib/cell'
 require './lib/ship'
 require './lib/cpu'
+require './lib/playability'
 
 class Game
+  include Playability
 
   def initialize
     @cpu_board = Board.new
@@ -26,11 +28,11 @@ class Game
       end
   end
 
-  def play_the_game
+  def render_the_boards
     puts "\n=============COMPUTER BOARD============="
     @cpu_board.render
     puts "\n=============PLAYER BOARD============="
-    @human_board.render
+    @human_board.render(true)
   end
 
 end

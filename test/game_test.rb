@@ -22,8 +22,8 @@ class GameTest < Minitest::Test
   #   @game.start_game
   # end
 
-  def test_game_can_be_played
-    @game.play_the_game
+  def test_boards_can_rendered_when_playing
+    @game.render_the_boards
   end
 
 
