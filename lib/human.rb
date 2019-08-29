@@ -37,7 +37,7 @@ class Human
       @human_board.render(true)
       break if @human_board.valid_placement?(ship_to_place, human_input)
     else
-      puts "That is an invalid coordinat! Try again! Example: A1"
+      puts "That is an invalid coordinate! Try again! Example: A1"
     end
     end
   end
