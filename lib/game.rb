@@ -9,6 +9,8 @@ class Game
     @human_board = Board.new
     @cpu_ships = @ships = [Ship.new("cruiser", 3), Ship.new("submarine", 2)]
     @human_ships = @ships = [Ship.new("cruiser", 3), Ship.new("submarine", 2)]
+    @@human_shot_coordinate = ''
+    @random_cpu_fire_cell = nil
   end
 
   def start_game
@@ -96,22 +98,47 @@ class Game
 
   # the player takes a shot then the cpu takes a shot
   def turn_shots
-    # prompt and get shot
+
+    # prompt user for shot
     puts "Enter the coordinate for your shot:"
-    shot_coordinate = gets.chomp.to_s.upcase
+    @human_shot_coordinate = gets.chomp.to_s.upcase
     # check for valid coordinate
-    if @cpu_board.cells.keys.include?(shot_coordinate)
+    if @cpu_board.cells.keys.include?(@human_shot_coordinate)
       # fire on that cell
-      @cpu_board.cells[shot_coordinate].fire_upon
+      @cpu_board.cells[@human_shot_coordinate].fire_upon
     # else reprompt
     else
       # if invalid shot coordinate is provided then reprompt
       while true
       puts "Invalid Coordinate. Choices are A1 - D4"
-      shot_coordinate = gets.chomp.to_s.upcase
-      break if @cpu_board.cells.keys.include?(shot_coordinate)
+      @human_shot_coordinate = gets.chomp.to_s.upcase
+      break if @cpu_board.cells.keys.include?(@human_shot_coordinate)
       end
     end
+
+    # cpu shots
+    # choose a random cell object from the human board
+    @random_cpu_fire_cell = @human_board.cells.values.sample
+    # check to see if it has been fired upon
+    if @random_cpu_fire_cell.fired_upon? != true
+      # fire upon that cell
+      @random_cpu_fire_cell.fire_upon
+    else
+      # if that cell had been fired upon...
+      while true
+      # choose another random cell object
+      @random_cpu_fire_cell = @human_board.cells.values.sample
+      # fire upon that
+      @random_cpu_fire_cell.fire_upon
+      # repeat until we find a cell that hasn't been fired upon
+      break if @random_cpu_fire_cell.fired_upon? != true
+      end
+    end
+  end
+
+  def print_results
+    puts "Your shot on #{@human_shot_coordinate} was a _."
+    puts "My shot on #{@random_cpu_fire_cell.coordinate} was a _."
   end
 
 end
